@@ -170,7 +170,7 @@ void destruirLista(Lista* lista){
 
 // LISTA ENCADEADA
 // cabeça → [dado|next] → [dado|next] → [dado|NULL]
-void main(){
+int main(){
     Lista* minhaLista = criarLista();
 
     inserirFinal(minhaLista, 10);
@@ -190,6 +190,8 @@ void main(){
     if (achou) printf("Encontrado: %d\n", achou->dado);
 
     destruirLista(minhaLista);
+
+    return 0;
 };
 
 
