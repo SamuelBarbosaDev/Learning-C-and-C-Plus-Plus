@@ -157,6 +157,16 @@ void imprimir(Lista* lista){
     printf("NULL\n");
 }
 
+
+// Imprimir a lista com recursividade
+void imprimirRecursivamente(Node* dado){
+    Node* temp = dado;
+    if (temp != NULL){
+        printf("%d -> \n", temp->dado);
+        imprimirRecursivamente(temp->prox);
+    }
+}
+
 // Liberar toda a memória (importante!)
 void destruirLista(Lista* lista){
     Node* atual = lista->inicio;
@@ -178,6 +188,7 @@ int main(){
     inserirInicio(minhaLista, 5);
     inserirPosicao(minhaLista, 15, 2);
 
+    imprimirRecursivamente(minhaLista->inicio);
     imprimir(minhaLista); // 5 -> 10 -> 15 -> 20 -> NULL
 
     removerInício(minhaLista);
