@@ -63,6 +63,34 @@ void inserirFinal(Lista*lista, int valor){
     lista->tamanho++;
 };
 
+// Inserir ao final recursivamente
+void _inserirRecAux(Node* atual, int valor){
+    if (atual->prox == NULL){
+        Node* novo = malloc(sizeof(Node));
+        novo->dado = valor;
+        novo->prox = NULL;
+        atual->prox = novo;
+    } else{
+        _inserirRecAux(atual->prox, valor);
+    }
+}
+
+void inserirFinalRecursivamente(Lista* lista, int valor){
+    lista->tamanho++;
+
+    // Caso base: lista vazia
+    if (lista->inicio == NULL){
+        Node* novo = malloc(sizeof(Node));
+        novo->dado = valor;
+        novo->prox = NULL;
+        lista->inicio = novo;
+        return;
+    }
+
+    // Chamada recursiva passando o ponteiro para o campo "prox" do último nó
+    _inserirRecAux(lista->inicio, valor);
+}
+
 // Inserir em posição especifica (Índice começando em 0)
 int inserirPosicao(Lista* lista, int valor, int pos){
 
@@ -187,9 +215,10 @@ int main(){
     inserirFinal(minhaLista, 20);
     inserirInicio(minhaLista, 5);
     inserirPosicao(minhaLista, 15, 2);
+    inserirFinalRecursivamente(minhaLista, 69);
 
     imprimirRecursivamente(minhaLista->inicio);
-    imprimir(minhaLista); // 5 -> 10 -> 15 -> 20 -> NULL
+    imprimir(minhaLista); // 5 -> 10 -> 15 -> 20 -> 69 -> NULL
 
     removerInício(minhaLista);
     imprimir(minhaLista);  // 10 -> 15 -> 20 -> NULL
