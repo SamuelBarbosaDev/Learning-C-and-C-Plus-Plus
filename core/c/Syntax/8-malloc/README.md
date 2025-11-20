@@ -52,5 +52,21 @@ free(p);                         // morre → memória devolvida ao sistema
 p = NULL;                        // boa prática (evita dangling pointer)
 ```
 
+### As 3 formas que você vai usar para sempre em C
+
+1. Boa e legível
+   Node* p = malloc(sizeof(Node));
+
+2. Boa e explícita
+   Node* p = malloc(sizeof(struct Node));
+
+3. A MELHOR (nunca erra, mesmo se mudar o tipo)
+   Node* p = malloc(sizeof(*p));   // ← grave isso!
+
+Regras de ouro:
+- Nunca escreva sizeof(tipo*) → isso aloca só 8 bytes!
+- O cast (Tipo*) é desnecessário em C → só polui o código
+- Use sempre verificação de NULL
+
 Resumo em uma frase:  
 **`malloc` pede memória emprestada do heap e te dá o endereço; você promete devolver com `free()` quando não precisar mais.**
